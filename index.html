@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industry & Company Stock Information</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Industry & Company Stock Information</h1>
+  </header>
+  <main>
+    <section>
+      <label for="search">Search Company:</label>
+      <input type="text" id="search" placeholder="Enter company name...">
+      <button id="searchBtn">Search</button>
+      <section id="industries">
+        <ul>
+          <li>
+            <h2> TEch</h2>
+            <ul>
+              <li>
+                <h3>Apple</h3>
+                <p>Stock Price:$ <span class="stock-price"></span></p>
+              </li>
+              <li>
+                <h3>Microsoft</h3>
+                <p>Stock Price: $ <span class="stock-price"></span></p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2>Finance 2</h2>
+            <ul>
+              <li>
+                <h3>JP Morgaan</h3>
+                <p>Stock Price: <span class="stock-price">$</span></p>
+              </li>
+              <li>
+                <h3>Bank of America</h3>
+                <p>Stock Price: <span class="stock-price">$</span></p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 COR Group.</p>
+  </footer>
+</body>
+
+</html>
