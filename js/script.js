@@ -11,8 +11,10 @@ fetch(requestUrl, requestOptions)
     return response.json();
 })
 .then(function (data) {
-   console.log(data)
-    // newFetch(getFilings)
+   //console.log(data)
+   for (var i = 0; i < data.length; i++) {
+    console.log(data.filings[0].documentFormatFiles[0].documentUrl);
+   }
 });
 
 
