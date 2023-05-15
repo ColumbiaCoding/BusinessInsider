@@ -5,7 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Industry & Company Stock Information</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js" defer></script>
+  <script src="searchResults.js" defer></script>
 </head>
 
 <body>
@@ -14,6 +19,73 @@
   </header>
   <main>
     <section>
+
+      <label for="search">Search Company:</label>
+      <input type="text" id="search" placeholder="Enter company name...">
+      <button id="searchBtn">Search</button>
+      <section id="industries">
+        <ul>
+          <li>
+            <h2>Tech</h2>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title"></h3>
+                <p class="card-text">Stock Price: $<span class="stock-price"></span></p>
+              </div>
+            </div>
+                <div class="card" style="width: 288px;">
+                  <div class="card-body">
+                    <h3 class="card-title">Microsoft</h3>
+                    <p class="card-text">Stock Price: $<span class="stock-price"></span></p>
+                  </div>
+                </div>
+          </li>
+          <li>
+            <h2>Finance 2</h2>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title">JP Morgan</h3>
+                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+              </div>
+            </div>
+                <div class="card" style="width: 288px;">
+                  <div class="card-body">
+                    <h3 class="card-title">Bank of America</h3>
+                    <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+                  </div>
+                </div>
+          </li>
+          <li>
+            <h2>Industry 3</h2>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title">J</h3>
+                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+              </div>
+            </div>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title">j</h3>
+                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h2>Industry 4</h2>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title">J</h3>
+                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+              </div>
+            </div>
+            <div class="card" style="width: 288px;">
+              <div class="card-body">
+                <h3 class="card-title">j</h3>
+                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
+              </div>
+            </div>
+          </li>
+        </ul>
       <div>
         <label for="search">Search Industry:</label>
         <label for="industriesList">Industries: </label>
