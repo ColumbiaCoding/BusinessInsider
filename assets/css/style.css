@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+* html .ui-autocomplete {
+  height: 100px !important;
+}
 body {
   font-family: Arial, sans-serif;
 }
@@ -17,3 +20,16 @@ header h1 {
   color: white;
   font-size: 24px;
 }
+.ui-autocomplete {
+  max-height: 100px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+/* #profile {
+
+} */
+.ui-widget-content {
+  background: white !important;
+  z-index: 99 !important;
+}
+
