@@ -1,17 +1,26 @@
 * {
-  margin: 0;
+  margin: 1px;
   padding: 0;
   box-sizing: border-box;
+
 }
+
 * html .ui-autocomplete {
   height: 100px !important;
 }
+
+/* html {
+  background-image: linear-gradient(to bottom, black, white);
+  background-repeat: round
+} */
+
 body {
   font-family: Arial, sans-serif;
+
 }
 
 header {
-  background-color: #333;
+  background-image: linear-gradient(to bottom, white, black);
   padding: 30px;
   text-align: center;
 }
@@ -20,16 +29,17 @@ header h1 {
   color: white;
   font-size: 24px;
 }
+
 .ui-autocomplete {
   max-height: 100px !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
 }
+
 /* #profile {
 
 } */
 .ui-widget-content {
-  background: white !important;
+  background: rgb(0, 0, 0) !important;
   z-index: 99 !important;
 }
-
