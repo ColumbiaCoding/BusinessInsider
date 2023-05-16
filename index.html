@@ -7,94 +7,33 @@
   <title>Industry & Company Stock Information</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
   <header>
-    <h1>Industry & Company Stock Information</h1>
+    <h2>Industry & Company Stock Information</h2>
   </header>
   <main>
     <section>
 
-      <label for="search">Search Company:</label>
-      <input type="text" id="search" placeholder="Enter company name...">
-      <button id="searchBtn">Search</button>
-      <section id="industries">
-        <ul>
-          <li>
-            <h2>Tech</h2>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title"></h3>
-                <p class="card-text">Stock Price: $<span class="stock-price"></span></p>
-              </div>
-            </div>
-                <div class="card" style="width: 288px;">
-                  <div class="card-body">
-                    <h3 class="card-title">Microsoft</h3>
-                    <p class="card-text">Stock Price: $<span class="stock-price"></span></p>
-                  </div>
-                </div>
-          </li>
-          <li>
-            <h2>Finance 2</h2>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title">JP Morgan</h3>
-                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-              </div>
-            </div>
-                <div class="card" style="width: 288px;">
-                  <div class="card-body">
-                    <h3 class="card-title">Bank of America</h3>
-                    <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-                  </div>
-                </div>
-          </li>
-          <li>
-            <h2>Industry 3</h2>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title">J</h3>
-                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-              </div>
-            </div>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title">j</h3>
-                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <h2>Industry 4</h2>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title">J</h3>
-                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-              </div>
-            </div>
-            <div class="card" style="width: 288px;">
-              <div class="card-body">
-                <h3 class="card-title">j</h3>
-                <p class="card-text">Stock Price: <span class="stock-price">$</span></p>
-              </div>
-            </div>
-          </li>
-        </ul>
       <div>
-        <label for="search">Search Industry:</label>
         <label for="industriesList">Industries: </label>
-        <input  id="industriesList">
+        <input id="industriesList">
+        <button id="searchBtn">Search</button>
       </div>
+      </section>
+      <section id="industries">
       </section>
   </main>
   <footer>
-    <p>&copy; 2023 COR Group.</p>
+
   </footer>
-  <script src="./assets/js/searchResults.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="./assets/js/searchResults.js" defer></script>
+  <!-- <script src="./assets/js/script.js" defer></script> -->
+
 </body>
 
 </html>

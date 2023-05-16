@@ -1,11 +1,11 @@
 //This will JS for company profile
-const requestURL =
+requestURL = ""
   "https://api.sec-api.io?token=c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b";
 const apiKey =
   "c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b";
 
-const element = document.querySelector("#post-request .company_name");
-const requestOptions = {
+element = document.querySelector("#post-request .company_name");
+requestOptions = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -53,8 +53,8 @@ fetch(requestURL, requestOptions)
 
 //  POST request with a JSON body using fetch
 var requestUrl = 'https://api.sec-api.io?token=c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b'
-const element = document.querySelector('#post-request .company-');
-const requestOptions = {
+ element = document.querySelector('#post-request .company-');
+ requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ "query": { "query_string": { "query": "formType:\"10-K\" AND documentFormatFiles.type:\"EX-21\""} } })}
