@@ -1,15 +1,17 @@
-apikey = 'cfe3b091b6a4ab54d404afc0c8f08810bfef6025fd9388b8747beb5a72deec16'
+apikey = '9f4e415110702bad95735ec3f107dff310c0246123f826d568b94d1ace6d976e'
 industriesEl = $('#industries')
-selectedCompanies = []
+
+var selectedCompanies = JSON.parse(localStorage.getItem("storeCompanies")) || [];
+
 // console.log(requestURL);
 function searchSubmit(event) {
     event.preventDefault();
     industriesEl.html("")
+    localStorage.clear();
     var selectedIndustry = $("#industriesList").val().replaceAll(" ", "%20")
     var requestURL = 'https://api.sec-api.io/mapping/industry/' + selectedIndustry + '?token=' + apikey
     console.log(requestURL);
     console.log(selectedIndustry);
-    event.preventDefault();
     fetch(requestURL)
         .then(function (response1) {
             return response1.json();
@@ -18,46 +20,53 @@ function searchSubmit(event) {
             //addtional function creation stuff
             // console.log(data1)
             var companyName = "";
+            selectedCompanies =[]
             
-            
+            //use data attributes
             for (let i = 0; i < 10; i++) {
                 currentCard = data1[i];
                 // console.log(currentCard);
-                const curCompany = currentCard;
-                selectedCompanies.push (curCompany);
+                selectedCompanies.push (currentCard);
                 //push to local storage so script.js can access it
-                localStorage.setItem("companyList", JSON.stringify(selectedCompanies))
-                companyName = data1[i].name;
+                localStorage.setItem("storedCompanies", JSON.stringify(selectedCompanies))
+                companyName = currentCard.name;
                 compList = $("<ul>")
-                companyTitle = $("<li>")
+                companyTitle = $("<li>").attr("data-compnum", i);
+                
                 companyTitle.addClass("indBtn").on("click", function(e){
-                    // console.log(e.target.innerHTML)
+                    console.log(e.target)
                     industriesEl.html("");
-
+                    var selComp = e.target.dataset.compnum
+                    currentCard = selectedCompanies[selComp]
+                    console.log(selComp)
+                    console.log(currentCard)
+                    // var chosenCompany = selectedCompanies.filter(company=>company.name===e.target.innerHTML)
                     createCard(currentCard)
                     profilePage(currentCard)
-                
+                    console.log(selectedCompanies)
                 })
                 companyTitle.text(companyName);
                 industriesEl.append(companyTitle);
             }
         })
 }
-function profilePage(){
-    
+function profilePage(cC){
+    console.log("a profile page")
 }
 function createCard(cur){
     // console.log(cur);
     
     cardContainer = $("<div>");
     industriesEl.append(cardContainer);
-    companyName = $("<h4>")
-    companyName.text(cur.name)
-    companyLocation = $("<p>")
-    companyLocation.text(cur.location);
+    cName = $("<h4>")
+    cName.text(cur.name)
+    cLocation = $("<p>")
+    cLocation.text(cur.location);
     
-    cardContainer.append(companyName);
-   cardContainer.append(companyLocation)
+    cardContainer.append(cName);
+    console.log(cLocation.text)
+    console.log(cName.text)
+   cardContainer.append(cLocation)
 }
 $("#searchBtn").on("click", searchSubmit);
 $(function () {
