@@ -1,71 +1,61 @@
 //This will JS for company profile
 const requestURL =
-  "https://api.sec-api.io?token=c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b";
+  "https://api.sec-api.io?token=41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646";
 const apiKey =
-  "c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b";
+  "41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646";
 
-const element = document.querySelector("#post-request .company_name");
-const requestOptions = {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    query: {
-      query_string: {
-        query:
-          'ticker:AAPL AND formType:"10-K" AND documentFormatFiles.type:"EX-21"',
-      },
-    //   from: "0",
-    //   size: "10",
-    //   sort: [
-    //     {
-    //       filedAt: ['2022-01-01 TO 2022-12-31'],
-    //     },
-    //   ],
-    },
-  }),
-};
-
-fetch(requestURL, requestOptions)
-  .then((response) => response.json())
-  .then(function (data) {
-    console.log(data.filings[0].linkToHtml);
-    var extractorUrl = data.filings[0].linkToHtml
-    extractorFetch(extractorUrl)
-  });
-
-  function extractorFetch(url){
-    // https://api.sec-api.io/extractor?
-    // url=url
-    // item=1A&
-    // type=text&
-    // token=YOUR_API_KEY
-
-
-    fetch('https://api.sec-api.io/extractor?url='+url+'item=1A&type=text&token='+ apiKey)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data);
-    })
+  function userSearch() {
+    const element = document.querySelector("#search");
+    const inputText = element.value
+    console.log(element)
+    console.log(inputText)
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: {
+          query_string: {
+            query:
+            //we need to put the user input below. Instead of ticker AAPL, pass in the 
+              // `ticker: ${inputText} AND formType:"10-K"  AND filedAt:[2022-01-01T14:00:00.000 TO 2024-01-01T19:00:00.000]`,
+              `companyName: ${inputText} AND formType:"10-K"  AND filedAt:[2022-01-01T14:00:00.000 TO 2024-01-01T19:00:00.000]`,
+          },
+        //   from: "0",
+        //   size: "10",
+          
+        },
+        sort: [
+          {
+            filedAt: {
+              order: "desc"
+            }
+          },
+        ],
+      }),
+    };
+    
+    fetch(requestURL, requestOptions)
+      .then((response) => response.json())
+      .then(function (data) {
+        console.log(data)
+        console.log(data.filings[0].companyName);
+        console.log(data.filings[0].companyName);
+        console.log(data.filings[0].linkToHtml);
+        var extractorUrl = data.filings[0].linkToHtml
+       secondAPICall(extractorUrl)
+      });
   }
 
+  function secondAPICall(url) {
+    fetch(`https://api.sec-api.io/xbrl-to-json?htm-url=${url}&token=41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646`)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      console.log(data.BalanceSheets)
+    })
 
-//  POST request with a JSON body using fetch
-var requestUrl = 'https://api.sec-api.io?token=c1484b557f33e9b69965330859cc4392e4c419f138b4cdf500e4d7155e8bd39b'
-const element = document.querySelector('#post-request .company-');
-const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "query": { "query_string": { "query": "formType:\"10-K\" AND documentFormatFiles.type:\"EX-21\""} } })}
+  }
 
-fetch(requestUrl, requestOptions)
-.then(function (response) {
-    return response.json();
-})
-.then(function (data) {
-   //console.log(data)
-   for (var i = 0; i < data.length; i++) {
-    console.log(data.filings[0].documentFormatFiles[0].documentUrl);
-   }
-});
+  document.getElementById("searchBtn").addEventListener("click", userSearch)
