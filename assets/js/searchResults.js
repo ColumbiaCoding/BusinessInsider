@@ -20,27 +20,26 @@ function searchSubmit(event) {
             //addtional function creation stuff
             // console.log(data1)
             var companyName = "";
-            selectedCompanies =[]
-            
+            selectedCompanies = []
+
             //use data attributes
             for (let i = 0; i < 10; i++) {
                 currentCard = data1[i];
                 // console.log(currentCard);
-                selectedCompanies.push (currentCard);
+                selectedCompanies.push(currentCard);
                 //push to local storage so script.js can access it
                 localStorage.setItem("storedCompanies", JSON.stringify(selectedCompanies))
                 companyName = currentCard.name;
                 compList = $("<ul>")
                 companyTitle = $("<li>").attr("data-compnum", i);
-                
-                companyTitle.addClass("indBtn").on("click", function(e){
+
+                companyTitle.addClass("indBtn").on("click", function (e) {
                     console.log(e.target)
                     industriesEl.html("");
                     var selComp = e.target.dataset.compnum
                     currentCard = selectedCompanies[selComp]
                     console.log(selComp)
                     console.log(currentCard)
-                    // var chosenCompany = selectedCompanies.filter(company=>company.name===e.target.innerHTML)
                     createCard(currentCard)
                     profilePage(currentCard)
                     console.log(selectedCompanies)
@@ -50,23 +49,23 @@ function searchSubmit(event) {
             }
         })
 }
-function profilePage(cC){
+function profilePage(cC) {
     console.log("a profile page")
 }
-function createCard(cur){
+function createCard(cur) {
     // console.log(cur);
-    
+
     cardContainer = $("<div>");
     industriesEl.append(cardContainer);
     cName = $("<h4>")
     cName.text(cur.name)
     cLocation = $("<p>")
-    cLocation.text(cur.location);
-    
+    cLocation.text("Location: " + cur.location);
+
     cardContainer.append(cName);
     console.log(cLocation.text)
     console.log(cName.text)
-   cardContainer.append(cLocation)
+    cardContainer.append(cLocation)
 }
 $("#searchBtn").on("click", searchSubmit);
 $(function () {
