@@ -1,12 +1,16 @@
 //This will JS for company profile
 const requestURL =
-  "https://api.sec-api.io?token=41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646";
+  "https://api.sec-api.io?token=13a4cfd3f79944ca4ba9fceeda405b0f94cebb2bb888deaa5a93e3d7c5b808cb";
 const apiKey =
-  "41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646";
+  "13a4cfd3f79944ca4ba9fceeda405b0f94cebb2bb888deaa5a93e3d7c5b808cb";
+  var cardEl = document.getElementById("industries")
+  industriesEl = $('#industries')
+  var selectedCompanies = JSON.parse(localStorage.getItem("storeCompanies")) || [];
 
+//this function is to grab the URL for the company
   function userSearch() {
-    const element = document.querySelector("#search");
-    const inputText = element.value
+    const element = document.querySelector("h4");
+    const inputText = $("#industriesList").val()
     console.log(element)
     console.log(inputText)
     const requestOptions = {
@@ -42,20 +46,23 @@ const apiKey =
         console.log(data.filings[0].companyName);
         console.log(data.filings[0].linkToHtml);
         var extractorUrl = data.filings[0].linkToHtml
+        var companyUrl = document.createElement("p")
+        companyUrl.innerText = extractorUrl
+        cardEl.append(companyUrl)
        secondAPICall(extractorUrl)
       });
   }
 
-  function secondAPICall(url) {
-    fetch(`https://api.sec-api.io/xbrl-to-json?htm-url=${url}&token=41ee05583756000a990318d274aa300562be3429f90fd70bb6db70268bb96646`)
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      console.log(data.BalanceSheets)
-    })
+  // function secondAPICall(url) {
+  //   fetch(`https://api.sec-api.io/xbrl-to-json?htm-url=${url}&token=13a4cfd3f79944ca4ba9fceeda405b0f94cebb2bb888deaa5a93e3d7c5b808cb`)
+  //   .then(response => {
+  //     return response.json()
+  //   })
+  //   .then(data => {
+  //     console.log(data)
+  //     console.log(data.BalanceSheets)
+  //   })
 
-  }
+  // }
 
-  document.getElementById("searchBtn").addEventListener("click", userSearch)
+  // document.getElementById("searchBtn").addEventListener("click", userSearch)
