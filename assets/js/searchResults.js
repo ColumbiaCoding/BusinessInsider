@@ -1,7 +1,61 @@
-apikey = '9f4e415110702bad95735ec3f107dff310c0246123f826d568b94d1ace6d976e'
-industriesEl = $('#industries')
+//This will JS for company profile
+const requestURL =
+  "https://api.sec-api.io?token=13a4cfd3f79944ca4ba9fceeda405b0f94cebb2bb888deaa5a93e3d7c5b808cb";
+const apiKey = 
+  "13a4cfd3f79944ca4ba9fceeda405b0f94cebb2bb888deaa5a93e3d7c5b808cb";
+  var cardEl = document.getElementById("industries")
+  industriesEl = $('#industries')
+  var selectedCompanies = JSON.parse(localStorage.getItem("storeCompanies")) || [];
+  var extractorUrl = ""
 
-var selectedCompanies = JSON.parse(localStorage.getItem("storeCompanies")) || [];
+//this function is to grab the URL for the company
+  function userSearch(companyName) {
+    return new Promise((resolve, reject) => {
+        const element = document.querySelector("h4");
+        const inputText = $("#industriesList").val()
+        console.log(element)
+        console.log(inputText)
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: {
+              query_string: {
+                query:
+                //we need to put the user input below. Instead of ticker AAPL, pass in the 
+                  // `ticker: ${inputText} AND formType:"10-K"  AND filedAt:[2022-01-01T14:00:00.000 TO 2024-01-01T19:00:00.000]`,
+                  `companyName: ${companyName} AND formType:"10-K"  AND filedAt:[2022-01-01T14:00:00.000 TO 2024-01-01T19:00:00.000]`,
+              },
+            //   from: "0",
+            //   size: "10",
+              
+            },
+            sort: [
+              {
+                filedAt: {
+                  order: "desc"
+                }
+              },
+            ],
+          }),
+        };
+        
+        fetch(requestURL, requestOptions)
+          .then((response) => response.json())
+          .then(function (data) {
+            console.log(data)
+            console.log(data.filings[0].companyName);
+            console.log(data.filings[0].companyName);
+            console.log(data.filings[0].linkToHtml);
+            extractorUrl = data.filings[0].linkToHtml
+            console.log(extractorUrl)
+            resolve(extractorUrl);
+           //secondAPICall(extractorUrl)
+          });
+
+    })
+  }
+
 
 // console.log(requestURL);
 function searchSubmit(event) {
@@ -9,7 +63,7 @@ function searchSubmit(event) {
     industriesEl.html("")
     localStorage.clear();
     var selectedIndustry = $("#industriesList").val().replaceAll(" ", "%20")
-    var requestURL = 'https://api.sec-api.io/mapping/industry/' + selectedIndustry + '?token=' + apikey
+    var requestURL = 'https://api.sec-api.io/mapping/industry/' + selectedIndustry + '?token=' + apiKey
     console.log(requestURL);
     console.log(selectedIndustry);
     fetch(requestURL)
@@ -24,7 +78,7 @@ function searchSubmit(event) {
 
             //use data attributes
             for (let i = 0; i < 10; i++) {
-                currentCard = data1[i];
+                let currentCard = data1[i];
                 // console.log(currentCard);
                 selectedCompanies.push(currentCard);
                 //push to local storage so script.js can access it
@@ -52,20 +106,26 @@ function searchSubmit(event) {
 function profilePage(cC) {
     console.log("a profile page")
 }
-function createCard(cur) {
+async function createCard(cur){
     // console.log(cur);
 
     cardContainer = $("<div>");
+    cardContainer.attr("id","cardDiv")
     industriesEl.append(cardContainer);
     cName = $("<h4>")
     cName.text(cur.name)
     cLocation = $("<p>")
-    cLocation.text("Location: " + cur.location);
-
+    cLocation.text(cur.location);
+    const url = await userSearch(cur.name)
     cardContainer.append(cName);
     console.log(cLocation.text)
     console.log(cName.text)
-    cardContainer.append(cLocation)
+   cardContainer.append(cLocation)
+   var companyUrl = $("<href>")
+   companyUrl.text(url)
+   console.log(companyUrl)
+   $("#industries").append(companyUrl)
+
 }
 $("#searchBtn").on("click", searchSubmit);
 $(function () {

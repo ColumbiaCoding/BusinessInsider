@@ -11,18 +11,19 @@ An SEC database search App
 * [Credits](#credits)
 ## Description
 
-A basic weather app using server APIs
+A finacial and company information App using SEC APIs
 
 ## Links
 <a href="https://crisesaverting.github.io/anotherWeatherApp/">Weather App</a>
 
 ## Purpose
 
-An app that provides basic weather forcasting features
+An app to provide basic company information based on industry
 
 ## Screenshots
 
-TODO:Insert screenshots here
+<img src="./assets/images/CompanyList.png">
+<img src="./assets/images/Profile.png">
 
 ## Technologies
 
