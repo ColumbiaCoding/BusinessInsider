@@ -74,27 +74,26 @@ function searchSubmit(event) {
             //addtional function creation stuff
             // console.log(data1)
             var companyName = "";
-            selectedCompanies =[]
-            
+            selectedCompanies = []
+
             //use data attributes
             for (let i = 0; i < 10; i++) {
                 let currentCard = data1[i];
                 // console.log(currentCard);
-                selectedCompanies.push (currentCard);
+                selectedCompanies.push(currentCard);
                 //push to local storage so script.js can access it
                 localStorage.setItem("storedCompanies", JSON.stringify(selectedCompanies))
                 companyName = currentCard.name;
                 compList = $("<ul>")
                 companyTitle = $("<li>").attr("data-compnum", i);
-                
-                companyTitle.addClass("indBtn").on("click", function(e){
+
+                companyTitle.addClass("indBtn").on("click", function (e) {
                     console.log(e.target)
                     industriesEl.html("");
                     var selComp = e.target.dataset.compnum
                     currentCard = selectedCompanies[selComp]
                     console.log(selComp)
                     console.log(currentCard)
-                    // var chosenCompany = selectedCompanies.filter(company=>company.name===e.target.innerHTML)
                     createCard(currentCard)
                     profilePage(currentCard)
                     console.log(selectedCompanies)
@@ -104,12 +103,12 @@ function searchSubmit(event) {
             }
         })
 }
-function profilePage(cC){
+function profilePage(cC) {
     console.log("a profile page")
 }
 async function createCard(cur){
     // console.log(cur);
-    
+
     cardContainer = $("<div>");
     cardContainer.attr("id","cardDiv")
     industriesEl.append(cardContainer);
@@ -122,7 +121,7 @@ async function createCard(cur){
     console.log(cLocation.text)
     console.log(cName.text)
    cardContainer.append(cLocation)
-   var companyUrl = $("<p>")
+   var companyUrl = $("<href>")
    companyUrl.text(url)
    console.log(companyUrl)
    $("#industries").append(companyUrl)
